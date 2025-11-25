@@ -11,7 +11,7 @@ const gallery = new SimpleLightbox('.gallery a', {
 });
 
 // Render gallery cards from image objects
-export function renderGalleryMarkup(images) {
+export function createGallery(images) {
   const galleryEl = document.querySelector('.gallery');
 
   const markup = images
@@ -46,4 +46,19 @@ export function renderGalleryMarkup(images) {
 
   // Refresh gallery to recognize new elements
   gallery.refresh();
+}
+
+export function clearGallery() {
+  const galleryEl = document.querySelector('.gallery');
+  galleryEl.innerHTML = '';
+}
+
+export function showLoader() {
+  const loader = document.querySelector('#loader');
+  loader.classList.add('is-visible');
+}
+
+export function hideLoader() {
+  const loader = document.querySelector('#loader');
+  loader.classList.remove('is-visible');
 }

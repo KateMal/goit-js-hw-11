@@ -18,21 +18,21 @@ const formElement = document.querySelector('#search-form');
 formElement.addEventListener('submit', event => {
   event.preventDefault();
   const query = event.currentTarget.searchQuery.value;
+  if (!query) {
+    return;
+  }
   clearGallery();
 
   showLoader();
 
   getImagesByQuery(query)
     .then(data => {
-      console.log('data', data.hits);
-
       if (data.hits.length === 0) {
         throw new Error(errorMessage);
       }
       createGallery(data.hits);
     })
     .catch(error => {
-      console.error('Error in main.js:', error);
       iziToast.error({
         title: 'Error',
         message: errorMessage,

@@ -17,8 +17,13 @@ const formElement = document.querySelector('#search-form');
 
 formElement.addEventListener('submit', event => {
   event.preventDefault();
-  const query = event.currentTarget.searchQuery.value;
+  const query = event.currentTarget.searchQuery.value.trim();
   if (!query) {
+    iziToast.error({
+      title: 'Error',
+      message: 'Please enter a search query.',
+      position: 'topRight',
+    });
     return;
   }
   clearGallery();
